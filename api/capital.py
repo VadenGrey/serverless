@@ -16,8 +16,15 @@ class handler(BaseHTTPRequestHandler):
             capital = data[0]["capital"][0]
             message = f"The capital of {dic['country']} is {str(capital)}."
 
+        elif 'capital' in dic:
+            url = "https://restcountries.com/v3.1/capital/"
+            r = requests.get(url + dic["capital"])
+            data = r.json()
+            capital = data[0]["capital"][0]
+            message = f"{str(capital)} is The capital of {dic['country']}."
+
         else:
-            message = "Give Country name please"
+            message = "Give Country or Capital please"
 
         self.send_response(200)
         self.send_header('Content-type','text/plain')
