@@ -20,7 +20,7 @@ class handler(BaseHTTPRequestHandler):
             url = "https://restcountries.com/v3.1/capital/"
             r = requests.get(url + dic["capital"])
             data = r.json()
-            capital = data[0]["capital"][0]
+            capital = data[0]['name']["common"]
             message = f"{str(capital)} is The capital of {dic['country']}."
 
         else:
